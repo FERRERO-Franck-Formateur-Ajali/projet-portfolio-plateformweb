@@ -1,5 +1,5 @@
 <div align="center">
-<h1>PROJET CERFA AXA</h1>
+<h1>PROJET PORTFOLIO PLATEFORMWEB</h1>
 <img src="/public/images/symfony.svg" alt="symfony">
 <h3>:boom: SYMFONY 5.3.10 avec Easyadmin3 :boom:</h3>
 </div>
