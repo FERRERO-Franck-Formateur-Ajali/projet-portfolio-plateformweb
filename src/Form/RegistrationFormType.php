@@ -38,8 +38,8 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options' => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmation mot de passe'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -53,6 +53,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('newsletter')
+
         ;
     }
 

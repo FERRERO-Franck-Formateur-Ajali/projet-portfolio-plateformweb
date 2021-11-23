@@ -21,7 +21,6 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -30,6 +29,11 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            $security = sha1($user->getEmail().date('Y-m-d H:i:s'));
+
+            $user->setSecurity($security);
+            $user->setKeyActivation($security);
 
             $entityManager->persist($user);
             $entityManager->flush();

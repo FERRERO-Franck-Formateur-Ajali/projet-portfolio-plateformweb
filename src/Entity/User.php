@@ -39,17 +39,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":false})
      */
     private $is_banned;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":false})
      */
     private $is_active;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":false})
      */
     private $is_dead;
 
@@ -88,6 +88,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\JoinColumn(nullable=false)
      */
     private $compte;
+
+    public function __construct()
+    {
+        $this->register_at = new \DateTimeImmutable();
+        $this->lastvisit_at = new \DateTimeImmutable();
+        $this->is_banned = false;
+        $this->is_active = true;
+        $this->is_dead = false;
+    }
 
     public function getId(): ?int
     {
@@ -226,12 +235,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRegisterAt(): ?\DateTimeImmutable
+    public function getRegisterAt(): ?\DateTime
     {
         return $this->register_at;
     }
 
-    public function setRegisterAt(\DateTimeImmutable $register_at): self
+    public function setRegisterAt(\DateTime $register_at): self
     {
         $this->register_at = $register_at;
 
