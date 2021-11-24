@@ -10,8 +10,11 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{form_row(registrationForm.compte)}}
         {{ form_row(registrationForm.agreeTerms) }}
         {{ form_row(registrationForm.newsletter) }}
         <button type="submit" class="btn btn-primary">Insciription</button>
+       
     {{ form_end(registrationForm) }}
+
 {% endblock %}

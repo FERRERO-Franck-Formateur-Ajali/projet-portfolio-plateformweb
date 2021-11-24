@@ -96,6 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->is_banned = false;
         $this->is_active = true;
         $this->is_dead = false;
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int

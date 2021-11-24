@@ -289,6 +289,11 @@ class Compte
         return $this->civility;
     }
 
+    public function __toString()
+    {
+        return $this->getCivility();
+    }
+
     public function setCivility(?Civility $civility): self
     {
         $this->civility = $civility;
