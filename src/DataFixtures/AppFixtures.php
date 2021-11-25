@@ -25,17 +25,15 @@ class AppFixtures extends Fixture
         // Création d'un utilisateur
         $user = new User();
 
-        $user->setEmail('user@gmail.com')
-             ->setPrenom($faker->firstName())
-             ->setNom($faker->lastName())
-             ->setTelephone($faker->phoneNumber())
-             ->setAPropos($faker->text())
-             ->setInstagram('instagram');
+        $user->setEmail('user@gmail.com');
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->password($password);
-
+        $user->setRoles(['ROLE_USER']);
         $manager->persist($user);
+
+        // Création de 10 Blogspot
+       // for ($i=0; $i < 20)
 
         $manager->flush();
     }
