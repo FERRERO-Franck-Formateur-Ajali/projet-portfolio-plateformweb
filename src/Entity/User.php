@@ -59,12 +59,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $banned_reason;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $register_at;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $lastvisit_at;
 
@@ -91,8 +91,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->register_at = new \DateTimeImmutable();
-        $this->lastvisit_at = new \DateTimeImmutable();
+        $this->register_at = new \DateTime();
+        $this->lastvisit_at = new \DateTime('now');
         $this->is_banned = false;
         $this->is_active = true;
         $this->is_dead = false;
@@ -248,12 +248,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLastvisitAt(): ?\DateTimeImmutable
+    public function getLastvisitAt(): ?\DateTime
     {
         return $this->lastvisit_at;
     }
 
-    public function setLastvisitAt(\DateTimeImmutable $lastvisit_at): self
+    public function setLastvisitAt(\DateTime $lastvisit_at): self
     {
         $this->lastvisit_at = $lastvisit_at;
 

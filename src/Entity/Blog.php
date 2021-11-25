@@ -47,7 +47,7 @@ class Blog
     private $content;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $creat_at;
 
@@ -151,12 +151,12 @@ class Blog
         return $this;
     }
 
-    public function getCreatAt(): ?\DateTimeImmutable
+    public function getCreatAt(): ?\DateTime
     {
         return $this->creat_at;
     }
 
-    public function setCreatAt(\DateTimeImmutable $creat_at): self
+    public function setCreatAt(\DateTime $creat_at): self
     {
         $this->creat_at = $creat_at;
 

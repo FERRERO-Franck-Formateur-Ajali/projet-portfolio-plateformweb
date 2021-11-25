@@ -22,7 +22,11 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', TextType::class, [
                 'constraints' => [
-                    new Regex('#^[\w.-]+@[\w.-]+.[a-z]{2,6}$#i'),
+                    new Regex([
+                        'pattern' => '#^[\w.-]+@[\w.-]+.[a-z]{2,6}$#i',
+                        'match' => true,
+                        'message' => 'Veuillez entrer une adresse email valide',
+                    ]),
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [

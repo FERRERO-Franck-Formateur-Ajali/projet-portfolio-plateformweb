@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class CompteType extends AbstractType
 {
@@ -29,6 +30,11 @@ class CompteType extends AbstractType
                         'max' => 14,
                         'maxMessage' => 'Le champ ne peut pas dépasser 14 caractère',
                     ]),
+                    new Regex([
+                        'pattern' => '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/',
+                        'match' => true,
+                        'message' => 'Veuillez entrer un numéro valide',
+                    ]),
                 ],
             ])
             ->add('adress', TextType::class, [
@@ -38,6 +44,13 @@ class CompteType extends AbstractType
             ->add('codepostal', TextType::class, [
                 'label' => 'Code Postal',
                 'required' => false,
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^[0-9]+$/',
+                        'match' => true,
+                        'message' => 'Champ invalide',
+                    ]),
+                ],
             ])
             ->add('ville', TextType::class, [
                 'label' => 'Ville',
@@ -67,15 +80,34 @@ class CompteType extends AbstractType
                         'max' => 3,
                         'maxMessage' => 'Le champ ne peut pas dépasser 3 caractères.',
                     ]),
+                    new Regex([
+                        'pattern' => '/^[0-9]+$/',
+                        'match' => true,
+                        'message' => 'Champ invalide',
+                    ]),
                 ],
             ])
             ->add('lat', TextType::class, [
                 'label' => 'Latitude',
                 'required' => false,
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/',
+                        'match' => true,
+                        'message' => 'Champ invalide',
+                    ]),
+                ],
             ])
             ->add('lng', TextType::class, [
                 'label' => 'Longitude',
                 'required' => false,
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/',
+                        'match' => true,
+                        'message' => 'Champ invalide',
+                    ]),
+                ],
             ])
             ->add('civility', EntityType::class, [
                 'class' => Civility::class,
