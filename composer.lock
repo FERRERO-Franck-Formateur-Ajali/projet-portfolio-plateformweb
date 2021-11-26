@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65ab3f6ace79e4d91db3eb95874b176d",
+    "content-hash": "68ead2279f0cecca86243a58d129778f",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -2437,6 +2437,72 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
+        },
+        {
+            "name": "scienta/doctrine-json-functions",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ScientaNL/DoctrineJsonFunctions.git",
+                "reference": "68cb08d449b9e3041719cd776f112aea8d7cdfe6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ScientaNL/DoctrineJsonFunctions/zipball/68cb08d449b9e3041719cd776f112aea8d7cdfe6",
+                "reference": "68cb08d449b9e3041719cd776f112aea8d7cdfe6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^5.0",
+                "doctrine/orm": "~2.6",
+                "phpunit/phpunit": "^6.5"
+            },
+            "suggest": {
+                "dunglas/doctrine-json-odm": "To serialize / deserialize objects as JSON documents."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Scienta\\DoctrineJsonFunctions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Doctrine Json Functions Contributors",
+                    "homepage": "https://github.com/ScientaNL/DoctrineJsonFunctions/contributors"
+                }
+            ],
+            "description": "A set of extensions to Doctrine 2 that add support for json query functions.",
+            "keywords": [
+                "database",
+                "doctrine",
+                "dql",
+                "json",
+                "mariadb",
+                "mysql",
+                "orm",
+                "postgres",
+                "postgresql",
+                "sqlite"
+            ],
+            "support": {
+                "issues": "https://github.com/ScientaNL/DoctrineJsonFunctions/issues",
+                "source": "https://github.com/ScientaNL/DoctrineJsonFunctions/tree/master"
+            },
+            "time": "2019-12-13T08:46:56+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -7938,6 +8004,78 @@
                 }
             ],
             "time": "2021-05-20T14:28:34+00:00"
+        },
+        {
+            "name": "twig/string-extra",
+            "version": "v3.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/string-extra.git",
+                "reference": "2aea4098a54af141366ebb0100492750253d971a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/string-extra/zipball/2aea4098a54af141366ebb0100492750253d971a",
+                "reference": "2aea4098a54af141366ebb0100492750253d971a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/string": "^5.0|^6.0",
+                "symfony/translation-contracts": "^1.1|^2",
+                "twig/twig": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Twig\\Extra\\String\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "A Twig extension for Symfony String",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "html",
+                "string",
+                "twig",
+                "unicode"
+            ],
+            "support": {
+                "source": "https://github.com/twigphp/string-extra/tree/v3.3.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-11-13T16:20:21+00:00"
         },
         {
             "name": "twig/twig",
