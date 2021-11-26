@@ -40,6 +40,10 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_login');
+
+            if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render('registration/register.html.twig', [
