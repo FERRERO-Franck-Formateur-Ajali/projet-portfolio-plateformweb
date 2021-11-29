@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -34,6 +35,28 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    /**
+     * Met à jour la session de l'utilisateur
+     * A partir de son id et de son token.
+     *
+     * @param UserInterface $user comment
+     */
+    public function updateLastVisit(UserInterface $user)
+    {
+        if (!$user instanceof User) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+        }
+
+        return $this->createQueryBuilder('U')
+            ->update()
+            ->set('U.lastvisit_at', '?1')
+            ->where('U.id = (?2)')
+            ->setParameter(1, new \DateTime())
+            ->setParameter(2, $user)
+            ->getQuery()
+            ->execute();
     }
 
     // /**

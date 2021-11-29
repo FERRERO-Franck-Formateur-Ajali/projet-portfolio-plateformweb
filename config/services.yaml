@@ -31,14 +31,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\EventSubscriber\TimeZoneSubscriber:
-            arguments:
-                $defaultTimezone: '%timezone%'
+    App\EventSubscriber\LocaleSubscriber:
+        arguments:
+            $defaultLocale: '%locale%'
+            $timeZone: '%timezone%'
+    App\EventSubscriber\UserLocaleSubscriber:
+        arguments:
+            $defaultLocale: '%locale%'
+            $timeZone: '%timezone%'
 
   
 
-    App\EventListener\LoginSubscriber:
-        tags:
-            - { name: 'kernel.event_subscriber', event: 'security.interactive_login' }
-        
-        
+  
