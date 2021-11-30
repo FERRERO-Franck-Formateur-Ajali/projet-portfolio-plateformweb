@@ -48,3 +48,4 @@ class BlogRepository extends ServiceEntityRepository
     }
     */
 }
+

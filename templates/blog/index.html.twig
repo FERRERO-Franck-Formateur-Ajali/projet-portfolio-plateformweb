@@ -8,7 +8,7 @@
 <section class="page-title bg-primary position-relative">
   <div class="container">
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-14 text-center">
         <h1 class="text-white font-tertiary">Blogs</h1>
       </div>
     </div>
@@ -25,93 +25,39 @@
 <!-- /page title -->
 
 <!-- blog -->
-{% for blog in blogs %}
+
+<p class="mb-0 text-muted">
+</p>
+
 <div class="col-12">
 <section class="section">
   <div class="container">
     <div class="row">
+    {% for blog in blogs %}
         <div class="col-lg-4 col-sm-6 mb-4">
           <article class="card shadow">
-            <img class="rounded card-img-top" src="images/blog/post-5.jpg" alt="post-thumb">
+           <a href="{{ path('blog_show', {'slug':blog.slug}) }}"><img src="{{ asset('images/blog/main-blog/' ~ blog.image) }}" alt=""></a>
             <div class="card-body">
-              <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
+              <h3>
+                {{ blog.title }}
+              </h3>
               </h4>
-              <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et
-                dolore magna aliqua.</p>
+              {{ blog.content|u.truncate(200, '...', false)}}
               <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
+              <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+  <date datetime="2021-11-26">Ajoutée le {{ blog.creatAt|date('Y-m-d H:i:s')}}
             </div>
           </article>
         </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <article class="card shadow">
-          <img class="rounded card-img-top" src="images/blog/post-2.jpg" alt="post-thumb">
-          <div class="card-body">
-            <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
-            </h4>
-            <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et
-              dolore magna aliqua.</p>
-            <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
-          </div>
-        </article>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <article class="card shadow">
-          <img class="rounded card-img-top" src="images/blog/post-3.jpg" alt="post-thumb">
-          <div class="card-body">
-            <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
-            </h4>
-            <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et
-              dolore magna aliqua.</p>
-            <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
-          </div>
-        </article>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <article class="card shadow">
-          <img class="rounded card-img-top" src="images/blog/post-4.jpg" alt="post-thumb">
-          <div class="card-body">
-            <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
-            </h4>
-            <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et
-              dolore magna aliqua.</p>
-            <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
-          </div>
-        </article>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <article class="card shadow">
-          <img class="rounded card-img-top" src="images/blog/post-5.jpg" alt="post-thumb">
-          <div class="card-body">
-            <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
-            </h4>
-            <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et
-              dolore magna aliqua.</p>
-            <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
-          </div>
-        </article>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <article class="card shadow">
-          <img class="rounded card-img-top" src="images/blog/post-2.jpg" alt="post-thumb">
-          <div class="card-body">
-            <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
-            </h4>
-            <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et
-              dolore magna aliqua.</p>
-            <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
-          </div>
-        </article>
-      </div>
+        {% endfor %}
+      
+    
+
+
     </div>
   </div>
 </section>
-{% endfor %}
+
 <!-- /blog -->
 
 <!-- clients -->
