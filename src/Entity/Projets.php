@@ -73,6 +73,11 @@ class Projets
      */
     private $is_fictif;
 
+    public function __construct()
+    {
+        $this->is_active = true;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
