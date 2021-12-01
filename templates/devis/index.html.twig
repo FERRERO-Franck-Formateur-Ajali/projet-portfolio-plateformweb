@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DevisController!{% endblock %}
+
+{% block body %}
+
+{#{{dump(form)}}}#}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<form method="POST">
+<h1>Devis</h1>
+{% for paragraphe, questions in form %}
+<div class="form-group">
+    <div>{{paragraphe}}</div>
+{% for question in questions %}
+{% if question.type == "text" %}
+<label for="{{question.slug}}">{{ question.label }}</label>
+<input type="text" id="{{question.slug}}">
+{% endif %}
+{% if question.type == "date" %}
+<input type="date">
+{% endif %}
+{% if question.type == "email" %}
+<input type="email" placeholder="{{ question.placeholder is defined ? question.placeholder : ''}}">
+{% endif %}
+{% if question.type == "password" %}
+<input type="password" placeholder="{{ question.placeholder is defined ? question.placeholder : ''}}">
+{% endif %}
+{% if question.type == "textarea" %}
+<textarea id="{{ question.slug }}"></textarea>
+<small id="emailHelp" class="form-text text-muted">{{ question.help }}.</small>
+{% endif %}
+{% if question.type == "file" %}
+<input type="file">
+{% endif %}
+{% if question.type == "number" %}
+<input type="number">
+{% endif %}
+{% if question.type == "color" %}
+<input type="color">
+{% endif %}
+{% if question.type == "submit" %}
+<input type="submit">
+{% endif %}
+{% if question.type == "datetime-local" %}
+<input type="datetime-local">
+{% endif %}
+{% if question.type == "radio" %}
+{% for option in question.options %}
+<label for="{{ question.slug }}">{{option.label}}</label>
+<input type="radio" id="{{ question.slug }}" name="{{ question.slug }}" value="{{option.value}}">
+{% endfor %} 
+<small id="emailHelp" class="form-text text-muted">{{ question.help }}.</small>
+{% endif %}
+{% endfor %}
+{#{{dump(form)}}}#}
+</div>
+{% endfor %}
+</form>
+
+{% endblock %}

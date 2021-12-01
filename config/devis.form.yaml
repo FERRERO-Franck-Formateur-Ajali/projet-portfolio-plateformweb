@@ -1,0 +1,133 @@
+Quel nom de site voulez-vous ?:
+  -
+      label: ''
+      type: 'text'
+      help: 'sert à vous inscrire'
+      value: 'plateformweb'
+      slug: ''
+Quel type de site voulez-vous ?:
+  -
+    label: ''
+    type: 'text'
+    help: 'inscrivez ici le nom de votre site'
+    value: 'plateformweb'
+    slug: 'nom-du-site'
+Quel est pour vous l’objectif du site ?:
+  -
+    label: ''
+    type: 'textarea'
+    help: 'inscrivez ici le nom de votre site'
+    value: 'plateformweb'
+    slug: ''
+Quel est le contenu du site ?:
+  -
+    label: ''
+    type: 'textarea'
+    help: 'Exemple: Présentation, page d''accueil, profil, contact...'
+    value: 'plateformweb'
+    slug: ''
+Votre site doit-il être responsive ?:
+  -
+      label: ''
+      type: 'radio'
+      options:
+        - 
+          label: 'Oui'
+          value: 'yes'
+        -
+          label: 'Non'
+          value: 'no'
+      help: 's''adapter à toutes tailles d''écrans'
+      value: ''
+      slug: 'responsive'
+Voulez-vous un espace utilisateur ?:
+  -
+      label: ''
+      type: 'radio'
+      options:
+        - 
+          label: 'Oui'
+          value: 'yes'
+        -
+          label: 'Non'
+          value: 'no'
+      help: 'Création de compte, modification du compte etc...)'
+      value: ''
+      slug: 'responsive'
+Les préférences de moyens de paiements utilisés :
+  -
+      label: ''
+      type: 'checkbox'
+      options:
+        - 
+          label: 'Paypal'
+          value: 'paypal'
+        -
+          label: 'Carte bancaire'
+          value: 'CB'
+        -
+          label: 'Chèque'
+          value: 'CHQ'
+      help: 'Création de compte, modification du compte etc...)'
+      value: ''
+      slug: 'moyen-payement'
+Question 3:
+  -
+    label: 'email'
+    type: 'email'
+    help: 'sert à vous inscrire'
+    value: 'plateformweb'
+    slug:
+    placeholder: 'Entrez un mail'
+Question 4:
+  -
+      label: 'password'
+      type: 'password'
+      help: 'sert à vous inscrire'
+      value: 'password'
+      slug:
+      placeholder: 'Entrez un mot de passe'
+Question 6:
+  -
+      label: 'file'
+      type: 'file'
+      help: 'sert à vous inscrire'
+      value: 'plateformweb'
+      slug:
+Question 7:
+  -
+      label: 'number'
+      type: 'number'
+      help: 'sert à vous inscrire'
+      value: 'plateformweb'
+      slug:
+Question 8:
+  -
+      label: 'color'
+      type: 'color'
+      help: 'sert à vous inscrire'
+      value: 'plateformweb'
+      slug:
+Question 9:
+  -
+      label: 'Votre civilité'
+      type: 'radio'
+      options:
+        - 
+          label: 'homme'
+          value: 'yes'
+        -
+          label: 'femme'
+          value: 'no'
+      help: 'Test pour le helper'
+      value: ''
+      slug: 'votre-civilite'
+Question 10:
+  -
+      label: 'Calendrier'
+      type: 'datetime-local'
+      help: 'sert à vous inscrire'
+      value: 'datetime-local'
+      slug: 'Calendrier'
+
+  
