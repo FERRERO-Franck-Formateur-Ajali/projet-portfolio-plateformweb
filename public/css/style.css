@@ -243,7 +243,7 @@ a:hover {
 }
 
 .bg-primary {
-  background: #41228e !important;
+  background: #565656 !important;
 }
 
 .bg-gray {
@@ -411,7 +411,7 @@ textarea.form-control {
   transition: 0.3s ease;
 }
 .navigation.nav-bg {
-  background-color: #41228e;
+  background-color: #565656;
   padding: 15px 100px;
 }
 @media (max-width: 991px) {
@@ -422,7 +422,7 @@ textarea.form-control {
 @media (max-width: 991px) {
   .navigation {
     padding: 20px;
-    background: #41228e;
+    background: #565656;
   }
 }
 
@@ -576,7 +576,7 @@ textarea.form-control {
   transition: 0.3s ease;
 }
 .hover-bg-primary:hover {
-  background: #41228e;
+  background: #565656;
 }
 .hover-bg-primary:hover * {
   color: #fff;
@@ -584,7 +584,7 @@ textarea.form-control {
 
 .active-bg-primary {
   transition: 0.3s ease;
-  background: #41228e;
+  background: #565656;
 }
 .active-bg-primary * {
   color: #fff;
