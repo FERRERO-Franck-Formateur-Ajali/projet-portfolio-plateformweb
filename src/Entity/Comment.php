@@ -35,12 +35,12 @@ class Comment
     private $comment;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $commented_at;
 
     /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $update_at;
 
@@ -58,6 +58,11 @@ class Comment
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $depth;
+
+    public function __construct()
+    {
+        $this->commented_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -100,24 +105,24 @@ class Comment
         return $this;
     }
 
-    public function getCommentedAt(): ?\DateTimeImmutable
+    public function getCommentedAt(): ?\DateTime
     {
         return $this->commented_at;
     }
 
-    public function setCommentedAt(\DateTimeImmutable $commented_at): self
+    public function setCommentedAt(\DateTime $commented_at): self
     {
         $this->commented_at = $commented_at;
 
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeImmutable
+    public function getUpdateAt(): ?\DateTime
     {
         return $this->update_at;
     }
 
-    public function setUpdateAt(?\DateTimeImmutable $update_at): self
+    public function setUpdateAt(?\DateTime $update_at): self
     {
         $this->update_at = $update_at;
 
