@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projets Entier{% endblock %}
+
+{% block body %}
+
+<h1>{{ projets.title }}</h1>
+<img src="{{ projets.image }}" alt="image-portfolio">
+<p>{{ projets.metades }}</p><hr>
+<p>{{ projets.content }}</p>
+<a href="{{ projets.url }}">Lien projets</a>
+
+<a href="{{ projets.github }}">Lien Github du projets</a>
+{% endblock %}
