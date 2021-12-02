@@ -28,7 +28,7 @@
 <h1>Devis</h1>
 {% for paragraphe, questions in form %}
 <div class="form-group">
-    <div>{{paragraphe}}</div>
+    <h5><div>{{paragraphe}}</div></h5>
 {% for question in questions %}
 {% if question.type == "text" %}
 <label for="{{question.slug}}">{{ question.label }}</label>
@@ -67,12 +67,19 @@
 <label for="{{ question.slug }}">{{option.label}}</label>
 <input type="radio" id="{{ question.slug }}" name="{{ question.slug }}" value="{{option.value}}">
 {% endfor %} 
-<small id="emailHelp" class="form-text text-muted">{{ question.help }}.</small>
+{% endif %}
+{% if question.type == "checkbox" %}
+{% for box in question.options %}
+<label for="{{ question.slug }}">{{box.label}}</label>
+<input type="checkbox" id="{{ question.slug }}" name="{{ question.slug }}" value="{{box.value}}">
+{% endfor %} 
 {% endif %}
 {% endfor %}
+
 {#{{dump(form)}}}#}
 </div>
 {% endfor %}
+<button type="submit" name="envoyer">Envoyer</button>
 </form>
 
 {% endblock %}

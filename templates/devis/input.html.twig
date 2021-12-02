@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis new section{% endblock %}
+
+{% block body %}
+<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-14 text-center">
+        <h1 class="text-white font-tertiary">>New section</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container my-5">
+    question: <input type="text" name="question">
+    helper: <input type="text" name="help">
+
+    {% if type == 'radio' or type == 'select' %}
+    <button type="button" id="add">Ajouter une option</button>
+    {% endif %}
+
+
+</div>
+{% endblock %}
