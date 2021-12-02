@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+{{dump(blogs)}}
+
+<!-- les blog -->
+{% for blog in blogs %}
+<div class="col-12">
+
+<!-- récup le chemin pour les images -->
+<img src="{{ blog.file }}" alt="..." class="img-fluid d-md-none invisible">
+
+<!-- le nom du blog -->
+<h3>
+  {{ blog.nom }}
+</h3>
+
+<!-- blog et description -->
+<p class="mb-0 text-muted">
+{{ blog.description|u.truncate(200, '...', false)}}
+</p>
+
+<!-- DATE -->
+<p class="h6 text-uppercase text-muted mb-0 ms-auto">
+  <date datetime="2021-11-26">Ajoutée le {{ blog.createdAt|date('Y-m-d H:i:s')}}
+
+</div>
+{% endfor %}
