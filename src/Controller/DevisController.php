@@ -81,6 +81,7 @@ class DevisController extends AbstractController
         ]);
     }
     /**
+     * @param string $name nom de la section
      *@Route("/devis/section/name/{name}", name="admin_name_section")
      */
     public function type(string $name): Response
@@ -95,13 +96,30 @@ class DevisController extends AbstractController
     }
    
     /**
+     * @param string $name nom de la section
+     * @param string $input nom de l'input choisi
      * @Route("/devis/section/name/{name}/{input}", name="admin_input_section")
      */
     public function input(string $name, string $input): Response
     {
         return $this->render('devis/input.html.twig', [
             'controller_name' => 'DevisController',
-            'type' => $input,
+            'input' => $input,
+            'name' => $name,
+        ]);
+    }
+    /**
+     * @param string $name nom de la section/
+     *@Route("/devis/section/add/name/{name}/{input}", name="admin_add_input_section")
+     */
+    public function addYaml(Request $request, string $name, string $input): Response
+    {
+        $inputs = ['text', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email'];
+
+        return $this->render('devis/type.html.twig', [
+            'controller_name' => 'DevisController',
+            'name' => $name,
+            'inputs' => $inputs,
         ]);
     }
 }
