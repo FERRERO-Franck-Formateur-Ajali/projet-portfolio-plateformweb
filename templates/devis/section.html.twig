@@ -31,18 +31,12 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 <select name="paragraphe" id="paragraphe-select" onchange="window.location.href=this.value">
 <option>Choisir un paragraphe</option>
-{% for key, label in paragraphes %}
-<option value="{{ path('admin_name_section', {'name':key}) }}">{{ label }}</option>
+{% for section, label in paragraphes %}
+<option value="{{ path('admin_name_section', {'section':section}) }}">{{ label }}</option>
 {% endfor %}
 </select> 
 

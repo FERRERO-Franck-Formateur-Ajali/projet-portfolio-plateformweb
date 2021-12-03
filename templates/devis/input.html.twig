@@ -13,13 +13,13 @@
   </div>
 </section>
 <div class="container my-5">
-  <form action="{{ path('admin_add_input_section', {'name':name, 'input':input}) }}" method="post">
+  <form method="post">
     question: <input type="text" name="question">
     helper: <input type="text" name="help">
-
- {#   {% if input == 'radio' or input == 'select' %}
+      
+    {% if input == 'radio' or input == 'select' %}
     <button type="button" id="add">Ajouter une option</button>
-    {% endif %}#}
+    {% endif %}
     <button type="submit" class="btn btn-primary">Ajouter</button>
   </form> 
 

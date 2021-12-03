@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis new section{% endblock %}
+
+{% block body %}
+<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-14 text-center">
+        <h1 class="text-white font-tertiary">>New section</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container my-5">
+
+    <div class="form-group mb-5">
+        <label for="section">Sections</label>
+        <select name="paragraphe" id="section" class="form-control" onchange="window.location.href=this.value">
+            <option>Choisir un paragraphe</option>
+            {% for section, label in paragraphes %}
+            <option value="{{ path('admin_name_section', {'section':section}) }}"{{ app.request.get('section') is defined and section == app.request.get('section') ? ' selected' : ''}}>{{ label }}</option>
+            {% endfor %}
+        </select> 
+    </div>
+
+
+    <div class="form-group mb-5">
+        <label for="input">Choix de l'input</label>
+        <select name="input" id="input" class="form-control"  onchange="window.location.href=this.value">
+            <option>Choix</option>
+            {% for choix in inputs %}
+            <option value="{{ path('admin_input_section', {'section':section, 'input':choix}) }}"{{ app.request.get('input') is defined and choix == app.request.get('input') ? ' selected' : ''}}>{{ choix }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {% if input is not null %}
+    <form action="{{ path('admin_add_input_yaml', {'section':section, 'input':input}) }}" method="post">
+        <input type="hidden" name="token" value="token">
+        <div class="form-group mb-5">
+            <label for="question">question: </label>
+            <input type="text" id="question" class="form-control" name="question">
+        </div>
+        
+        <div class="form-group mb-5">
+            <label for="helper">helper: </label>
+            <input type="text" id="helper" class="form-control" name="help">
+        </div>
+        
+    
+        <div id="options"></div>
+        {% if input == 'radio' or input == 'select' %}
+        <button type="button" id="add">Ajouter une option</button>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form> 
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#add', function() {
+            var option = $('<label>Label :</label> <input name="label[]" type="text">');
+            var option2 = $('<label>Value :</label> <input name="value[]" type="text">');
+            $('#options').append(option);
+            $('#options').append(option2);
+        });
+    });
+</script>
+{% endblock %}

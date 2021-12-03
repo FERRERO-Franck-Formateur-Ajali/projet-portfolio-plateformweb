@@ -1,7 +1,6 @@
-filsdefranck:
-    label: 'fils de franck'
+yasin:
+    label: Yasin
     tabs: {  }
-tutugneugneu:
-    label: 'tutu gneugneu'
-    tabs: {  }
-  
+franck:
+    label: Franck
+    tabs: [{ label: '', type: radio, help: '', slug: '', option: { label: Homme, value: H } }, { label: '', type: radio, help: '', slug: '', option: { label: Homme, value: H } }, { label: '', type: radio, help: '', slug: '', option: { label: Homme, value: H } }, { label: '', type: radio, help: '', slug: '', option: { label: Homme, value: H } }]

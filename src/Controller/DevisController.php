@@ -36,6 +36,8 @@ class DevisController extends AbstractController
     }
 
     /**
+     * Affiche le formulaire dévis au client
+     * 
      * @Route("/devis/section", name="admin_section")
      */
     public function form(Request $request, ?string $name, ?string $input): Response
@@ -54,6 +56,9 @@ class DevisController extends AbstractController
     }
 
     /**
+     * En admin
+     * Ajoute une nouvelle section au questionnaire du devis 
+     * 
      * @Route("/devis/section/new", name="admin_new_section")
      */
     public function newSection(Request $request): Response
@@ -80,46 +85,72 @@ class DevisController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    /**
-     * @param string $name nom de la section
-     *@Route("/devis/section/name/{name}", name="admin_name_section")
-     */
-    public function type(string $name): Response
-    {
-        $inputs = ['text', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email'];
 
-        return $this->render('devis/type.html.twig', [
-            'controller_name' => 'DevisController',
-            'name' => $name,
-            'inputs' => $inputs,
-        ]);
-    }
-   
     /**
-     * @param string $name nom de la section
-     * @param string $input nom de l'input choisi
-     * @Route("/devis/section/name/{name}/{input}", name="admin_input_section")
+     * En admin
+     * 
+     * @param string $section nom de la section
+     * @param string|null $input nom de l'input choisi
+     * 
+     * @Route("/devis/section/name/{section}", name="admin_name_section")
+     * @Route("/devis/section/name/{section}/{input}", name="admin_input_section")
+     * @Route("/devis/section/name/{section}/{input}/add", name="admin_add_input_yaml")
      */
-    public function input(string $name, string $input): Response
+    public function addYaml(Request $request, string $section, ?string $input): Response
     {
-        return $this->render('devis/input.html.twig', [
+
+        if ($request->request->get('token') !== null && $section && $input) {
+            $request->request->remove('token');
+            $question = $request->request->get('question');
+            $help = $request->request->get('help');
+            $type = $input;
+            $slug = $this->slug($question);
+            $labels = $request->request->get('label');
+            $values = $request->request->get('value');
+            dump($labels, $values);
+            if($input === 'radio' || $input === 'select'){
+                $this->tableau[$section]['tabs'][] = [
+                    'label' => $question,
+                    'type' => $type,
+                    'help' => $help,
+                    'slug' => $slug,
+                    'option'=> [
+                        'label' => $labels[0],
+                        'value' => $values[0],
+
+                    ]
+                ];
+            }else{
+            $this->tableau[$section]['tabs'][] = [
+                'label' => $question,
+                'type' => $type,
+                'help' => $help,
+                'slug' => $slug
+            ];
+            }
+
+            
+            dump($this->tableau);
+
+            file_put_contents($this->file, Yaml::dump($this->tableau));
+            exec('rm -R var/cache');
+            
+            dump($request->request);
+        }
+
+        $paragraphes = [];
+        foreach ($this->tableau as $paragraphe => $parametres) {
+            $paragraphes[$paragraphe] = $parametres['label'];
+        } 
+
+        $inputs = ['text', 'select', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email'];
+
+        return $this->render('devis/form.html.twig', [
             'controller_name' => 'DevisController',
+            'section' => $section,
+            'inputs' => $inputs,
             'input' => $input,
-            'name' => $name,
-        ]);
-    }
-    /**
-     * @param string $name nom de la section/
-     *@Route("/devis/section/add/name/{name}/{input}", name="admin_add_input_section")
-     */
-    public function addYaml(Request $request, string $name, string $input): Response
-    {
-        $inputs = ['text', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email'];
-
-        return $this->render('devis/type.html.twig', [
-            'controller_name' => 'DevisController',
-            'name' => $name,
-            'inputs' => $inputs,
+            'paragraphes' => $paragraphes
         ]);
     }
 }
