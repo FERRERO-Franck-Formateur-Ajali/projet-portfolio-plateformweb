@@ -3,83 +3,82 @@
 {% block title %}Hello DevisController!{% endblock %}
 
 {% block body %}
+{{dump(form)}}
+<div class="p-5">
+    <form method="POST">
+        <h1 class="mb-5">Devis</h1>
+        {% for section in form %}
+        <div class="mb-5">
+            <h5><div>{{section.label}}</div></h5>
 
-{#{{dump(form)}}}#}
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<form method="POST">
-<h1>Devis</h1>
-{% for paragraphe, questions in form %}
-<div class="form-group">
-    <h5><div>{{paragraphe}}</div></h5>
-{% for question in questions %}
-{% if question.type == "text" %}
-<label for="{{question.slug}}">{{ question.label }}</label>
-<input type="text" id="{{question.slug}}">
-{% endif %}
-{% if question.type == "date" %}
-<input type="date">
-{% endif %}
-{% if question.type == "email" %}
-<input type="email" placeholder="{{ question.placeholder is defined ? question.placeholder : ''}}">
-{% endif %}
-{% if question.type == "password" %}
-<input type="password" placeholder="{{ question.placeholder is defined ? question.placeholder : ''}}">
-{% endif %}
-{% if question.type == "textarea" %}
-<textarea id="{{ question.slug }}"></textarea>
-<small id="emailHelp" class="form-text text-muted">{{ question.help }}.</small>
-{% endif %}
-{% if question.type == "file" %}
-<input type="file">
-{% endif %}
-{% if question.type == "number" %}
-<input type="number">
-{% endif %}
-{% if question.type == "color" %}
-<input type="color">
-{% endif %}
-{% if question.type == "submit" %}
-<input type="submit">
-{% endif %}
-{% if question.type == "datetime-local" %}
-<input type="datetime-local">
-{% endif %}
-{% if question.type == "radio" %}
-{% for option in question.options %}
-<label for="{{ question.slug }}">{{option.label}}</label>
-<input type="radio" id="{{ question.slug }}" name="{{ question.slug }}" value="{{option.value}}">
-{% endfor %} 
-{% endif %}
-{% if question.type == "checkbox" %}
-{% for box in question.options %}
-<label for="{{ question.slug }}">{{box.label}}</label>
-<input type="checkbox" id="{{ question.slug }}" name="{{ question.slug }}" value="{{box.value}}">
-{% endfor %} 
-{% endif %}
-{% endfor %}
+            {% for tab in section.tabs %}
+            <div class="form-group">
+                <label for="{{tab.slug}}">{{ tab.label }}</label>
+                {% if tab.type == "text" %}
+                <input type="text" class="form-control" name="{{ tab.slug }}" id="{{tab.slug}}">
+                {% endif %}
 
-{#{{dump(form)}}}#}
+
+                {% if tab.type == "date" %}
+                <input type="date" class="form-control name="{{ tab.slug }}"">
+                {% endif %}
+
+                {% if tab.type == "email" %}
+                <input type="email" class="form-control" name="{{ tab.slug }}" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
+                {% endif %}
+
+                {% if tab.type == "password" %}
+                <input type="password" class="form-control" name="{{ tab.slug }}" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
+                {% endif %}
+
+                {% if tab.type == "textarea" %}
+                <textarea id="{{ tab.slug }}" class="form-control" name="{{ tab.slug }}"></textarea>
+                <small id="emailHelp" class="form-text text-muted">{{ tab.help }}.</small>
+                {% endif %}
+
+                {% if tab.type == "file" %}
+                <input type="file" class="form-control" name="{{ tab.slug }}">
+                {% endif %}
+
+                {% if tab.type == "number" %}
+                <input type="number" class="form-control" name="{{ tab.slug }}">
+                {% endif %}
+
+                {% if tab.type == "color" %}
+                    <input type="color" class="form-control" style="width:100px" name="{{ tab.slug }}">
+                {% endif %}
+
+
+                {% if tab.type == "datetime-local" %}
+                <input type="datetime-local" class="form-control" name="{{ tab.slug }}">
+                {% endif %}
+
+                {% if tab.type == "radio" %}
+                    {% for option in tab.options %}
+                    <label for="{{ tab.slug }}">{{option.label}}</label>
+                    <input type="radio" class="form-checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}" value="{{option.value}}">
+                    {% endfor %} 
+                {% endif %}
+
+                {% if tab.type == "multicheckbox" %}
+                    {% for box in tab.options %}
+                    <label for="{{ tab.slug }}">{{tab.label}}</label>
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}" value="{{tab.value}}">
+                    {% endfor %} 
+                {% endif %}
+
+                {% if tab.type == "checkbox" %}
+                    <label for="{{ tab.slug }}">{{tab.label}}</label>
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}">
+                {% endif %}
+                </div>
+
+            {% endfor %}    
+
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-secondary">Envoyer</button>
+    </form>
 </div>
-{% endfor %}
-<button type="submit" name="envoyer">Envoyer</button>
-</form>
-
 {% endblock %}

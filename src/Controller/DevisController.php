@@ -105,37 +105,36 @@ class DevisController extends AbstractController
             $help = $request->request->get('help');
             $type = $input;
             $slug = $this->slug($question);
-            $labels = $request->request->get('label');
-            $values = $request->request->get('value');
-            dump($labels, $values);
-            if($input === 'radio' || $input === 'select'){
-                $this->tableau[$section]['tabs'][] = [
-                    'label' => $question,
-                    'type' => $type,
-                    'help' => $help,
-                    'slug' => $slug,
-                    'option'=> [
-                        'label' => $labels[0],
-                        'value' => $values[0],
-
-                    ]
-                ];
-            }else{
-            $this->tableau[$section]['tabs'][] = [
+            $options = [];
+            if($input === 'radio' || $input === 'select' || $input === 'multicheckbox'){
+                $labels = $request->request->get('label');
+                $values = $request->request->get('value');
+                
+                for($i = 0; $i < count($labels); $i++) {
+                    $options[]=[
+                    'label' => $labels[$i],
+                    'value' => $values[$i],
+                    ];
+                }
+            }
+            $tabs = [
                 'label' => $question,
                 'type' => $type,
                 'help' => $help,
-                'slug' => $slug
+                'slug' => $slug,
             ];
+            if(!empty($options)){
+                $tabs['options'] = $options;
             }
 
+            $this->tableau[$section]['tabs'][] = $tabs;
+
             
-            dump($this->tableau);
 
             file_put_contents($this->file, Yaml::dump($this->tableau));
             exec('rm -R var/cache');
             
-            dump($request->request);
+            
         }
 
         $paragraphes = [];
@@ -143,7 +142,7 @@ class DevisController extends AbstractController
             $paragraphes[$paragraphe] = $parametres['label'];
         } 
 
-        $inputs = ['text', 'select', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email'];
+        $inputs = ['text', 'select', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email', 'checkbox', 'multicheckbox'];
 
         return $this->render('devis/form.html.twig', [
             'controller_name' => 'DevisController',
