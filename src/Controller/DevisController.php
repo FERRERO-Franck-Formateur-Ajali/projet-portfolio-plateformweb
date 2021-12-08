@@ -155,7 +155,11 @@ class DevisController extends AbstractController
         ]);
     }
 
-#    public function connectionAction(Request $request) {
+    /**
+     * @Route("/devis/connexion", name="connexion")
+     */
+#    public function connectionAction(Request $request) 
+#    {
 #        $nom = $request->request->get('nom');
 #        $prenom = $request->request->get('prenom');
 #        $email = $request->request->get('email');
