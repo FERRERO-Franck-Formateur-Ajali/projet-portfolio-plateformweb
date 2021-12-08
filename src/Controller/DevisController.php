@@ -105,6 +105,7 @@ class DevisController extends AbstractController
             $help = $request->request->get('help');
             $type = $input;
             $slug = $this->slug($question);
+            $placeholder = $request->request->get('placeholder');
             $options = [];
             if($input === 'radio' || $input === 'select' || $input === 'multicheckbox'){
                 $labels = $request->request->get('label');
@@ -122,6 +123,7 @@ class DevisController extends AbstractController
                 'type' => $type,
                 'help' => $help,
                 'slug' => $slug,
+                'placeholder' => $placeholder,
             ];
             if(!empty($options)){
                 $tabs['options'] = $options;

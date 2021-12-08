@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="{{tab.slug}}">{{ tab.label }}</label>
                 {% if tab.type == "text" %}
-                <input type="text" class="form-control" name="{{ tab.slug }}" id="{{tab.slug}}">
+                <input type="text" class="form-control" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}" name="{{ tab.slug }}" id="{{tab.slug}}">
                 {% endif %}
 
 
@@ -33,7 +33,7 @@
                 {% endif %}
 
                 {% if tab.type == "textarea" %}
-                <textarea id="{{ tab.slug }}" class="form-control" name="{{ tab.slug }}"></textarea>
+                <textarea id="{{ tab.slug }}" class="form-control" name="{{ tab.slug }}" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}"></textarea>
                 <small id="emailHelp" class="form-text text-muted">{{ tab.help }}.</small>
                 {% endif %}
 
@@ -63,14 +63,23 @@
 
                 {% if tab.type == "multicheckbox" %}
                     {% for box in tab.options %}
-                    <label for="{{ tab.slug }}">{{tab.label}}</label>
-                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}" value="{{tab.value}}">
+                    <label for="{{ tab.slug }}">{{box.label}}</label>
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}" value="{{box.value}}">
                     {% endfor %} 
                 {% endif %}
 
                 {% if tab.type == "checkbox" %}
-                    <label for="{{ tab.slug }}">{{tab.label}}</label>
+
                     <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}">
+                {% endif %}
+
+                 {% if tab.type == "select" %}
+                    <select name="{{ tab.slug }}" id="{{ tab.slug }}" class="form-control">
+                    <option>Choix</option>
+                    {% for select in tab.options %}
+                    <option value="{{ select.value }}">{{select.label}}</option>
+                    {% endfor %}
+                    </select>
                 {% endif %}
                 </div>
 
