@@ -1,15 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DevisController!{% endblock %}
-
+{% block title %}Devis{% endblock %}
+{#{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/stylet.css') }}">{% endblock %}#}
 {% block body %}
-{{dump(form)}}
+{#{{dump(form)}}#}
 <div class="p-5">
     <form method="POST">
+    {#<form action="{{ path('connection') }}" method="post" name="formulaire">#}
         <h1 class="mb-5">Devis</h1>
+        {% if is_granted('ROLE_USER') == false %}
+        <div>Êtes-vous une société ?</div>
+        <label>Oui</label>
+        <input type="radio" name="pro" value="yes">
+        <label>Non</label>
+        <input type="radio" name="pro" value="no">
+        <div id="pro" style="display:none;">
+            <label>Siret</label>
+            <input type="text" name="siret">
+            <label>Dénomination ou raison social</label>
+            <input type="text" name="denomination">
+        </div></br>
+        <label>Nom</label>
+        <input type="text" class="form-group" name="nom">
+        <label>Prénom</label>
+        <input type="text" class="form-group" name="prenom">
+        <label>Email</label>
+        <input type="email" class="form-group" name="email">
+        {% endif %}
         {% for section in form %}
         <div class="mb-5">
             <h5><div>{{section.label}}</div></h5>
+    </form>
 
 
             {% for tab in section.tabs %}
@@ -90,4 +111,21 @@
         <button type="submit" class="btn btn-secondary">Envoyer</button>
     </form>
 </div>
+{% endblock %}
+
+{# Si la société existe, alors, afficher le siret #}
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $(document).on('click', 'input[name="pro"]', function() {
+            var option = $(this).val();
+            console.log(option);
+            if (option === 'yes') {
+                $('#pro').show();
+            }else if(option === 'no') {
+                $('#pro').hide();
+            }
+        });
+    });
+</script>
 {% endblock %}

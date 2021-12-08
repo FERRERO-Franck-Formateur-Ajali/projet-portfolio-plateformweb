@@ -154,4 +154,10 @@ class DevisController extends AbstractController
             'paragraphes' => $paragraphes
         ]);
     }
+
+#    public function connectionAction(Request $request) {
+#        $nom = $request->request->get('nom');
+#        $prenom = $request->request->get('prenom');
+#        $email = $request->request->get('email');
+#    }
 }
