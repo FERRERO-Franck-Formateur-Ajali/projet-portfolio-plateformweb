@@ -57,7 +57,7 @@
       <div class="col-lg-10 mx-auto text-center">
         <p class="font-secondary paragraph-lg text-dark">Afin d'atteindre vos objectifs, je vous accompagne dans la réussite de votre projet pour la création ou la refonte de votre site internet. Profitez d'une approche globale et de conseils dans les choix techniques de votre projet pour un site web professionnel, sur mesure et à votre image.
 Avec 6 années d'expérience et un BTS en développement web et web mobile spécialisé en php, je couvre autant les développements sur des framework comme symfony et laravel, que sur des cms comme wordpress, prestashop et joomla. </p>
-        <a href="about.html" class="btn btn-transparent">En savoir plus ?</a>
+        <a href="{{ path('about') }}" class="btn btn-transparent">En savoir plus ?</a>
       </div>
     </div>
   </div>
@@ -210,7 +210,75 @@ A partir de 5€ HT/mois sans engagement</p>
   </div>
 </section>
 <!-- /portfolio -->
-
+<!-- services -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Services</h2>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-layout-sidebar-right icon mb-5 d-inline-block"></i>
+            <h4 class="mb-4">Projet Responsive</h4>
+            <p>De nos jours, encore beaucoup de foyers ne possèdent pas d'ordinateur. Afin d'atteindre un maximum de personnes et quelque soit la nature de vos projets, tous les développements de vos sites et applications seront responsives pour être adaptés à tous types d'écrans. Tablettes, smartphones et ordinateurs.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card active-bg-primary hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-harddrives icon mb-5 d-inline-block"></i>
+            <h4 class="mb-4">Hébergement</h4>
+            <p>Hébergement en option sur mes propres serveurs de hautes performances situés en France pour 
+            une disponibilité et une qualité optimales. <br>
+A partir de 5€ HT/mois sans engagement</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-bar-chart icon mb-5 d-inline-block"></i>
+            <h4 class="mb-4">SEO</h4>
+            <p>Découvrez quels sont les axes d'amélioration et les opportunités sur lesquelles il est prioritaire d'intervenir pour accélérer la croissance de votre site internet.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card active-bg-primary hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-headphone-alt icon mb-5 d-inline-block"></i>
+            <h4 class="mb-4">Maintenance</h4>
+            <p>Après la mise en production, je vous suis et vous apporte si besoin sans supplément pendant une durée de 1 mois, toutes les modifications 
+            ou bugs que vous pouvez remarquer ou rencontrer qui sont liés au développement de votre projet.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card active-bg-primary hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-headphone-alt icon mb-5 d-inline-block"></i>
+            <h4 class="mb-4">Maintenance</h4>
+            <p>Après la mise en production, je vous suis et vous apporte si besoin sans supplément pendant une durée de 1 mois, toutes les modifications 
+            ou bugs que vous pouvez remarquer ou rencontrer qui sont liés au développement de votre projet.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card active-bg-primary hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-headphone-alt icon mb-5 d-inline-block"></i>
+            <h4 class="mb-4">Maintenance</h4>
+            <p>Après la mise en production, je vous suis et vous apporte si besoin sans supplément pendant une durée de 1 mois, toutes les modifications 
+            ou bugs que vous pouvez remarquer ou rencontrer qui sont liés au développement de votre projet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- testimonial -->
 <section class="section bg-primary position-relative testimonial-bg-shapes">
   <div class="container">
@@ -300,24 +368,24 @@ A partir de 5€ HT/mois sans engagement</p>
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h2 class="section-title">Contact Info</h2>
+        <h2 class="section-title">Me contacter</h2>
       </div>
       <div class="col-lg-8 mx-auto">
         <div class="bg-white rounded text-center p-5 shadow-down">
-          <h4 class="mb-80">Contact Form</h4>
+          <h4 class="mb-80">Formulaire</h4>
           <form action="#" class="row">
             <div class="col-md-6">
-              <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4" required>
+              <input type="text" id="name" name="name" placeholder="Nom Prénom" class="form-control px-0 mb-4" required>
             </div>
             <div class="col-md-6">
-              <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4" required>
+              <input type="email" id="email" name="email" placeholder="Adresse e-mail" class="form-control px-0 mb-4" required>
             </div>
             <div class="col-12">
               <textarea name="message" id="message" class="form-control px-0 mb-4"
-                placeholder="Type Message Here" required></textarea>
+                placeholder="Écrivez ici" required></textarea>
             </div>
             <div class="col-lg-6 col-10 mx-auto">
-              <button class="btn btn-primary w-100">send</button>
+              <button class="btn btn-primary w-100">envoyer</button>
             </div>
           </form>
         </div>
