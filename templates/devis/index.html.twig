@@ -5,20 +5,22 @@
 {% block body %}
 {#{{dump(form)}}#}
 <div class="p-5">
-    <form method="POST">
-    {#<form action="{{ path('connection') }}" method="post" name="formulaire">#}
+    <form action="{{ path('connexion') }}" method="post">
         <h1 class="mb-5">Devis</h1>
         {% if is_granted('ROLE_USER') == false %}
         <div>Êtes-vous une société ?</div>
+        <input type="hidden" name="societe[question]" value="Êtes-vous une société ?">
         <label>Oui</label>
-        <input type="radio" name="pro" value="yes">
+        <input type="radio" name="societe[value]" value="yes">
         <label>Non</label>
-        <input type="radio" name="pro" value="no">
+        <input type="radio" name="societe[value]" value="no">
         <div id="pro" style="display:none;">
             <label>Siret</label>
-            <input type="text" name="siret">
+            <input type="hidden" name="siret[question]" value="Siret">
+            <input type="text" name="siret[value]">
             <label>Dénomination ou raison social</label>
-            <input type="text" name="denomination">
+            <input type="hidden" name="denomination[question]" value="Dénomination ou raison social">
+            <input type="text" name="denomination[value]">
         </div></br>
         <label>Nom</label>
         <input type="text" class="form-group" name="nom">
@@ -30,72 +32,84 @@
         {% for section in form %}
         <div class="mb-5">
             <h5><div>{{section.label}}</div></h5>
-    </form>
+    
 
 
             {% for tab in section.tabs %}
             <div class="form-group">
                 <label for="{{tab.slug}}">{{ tab.label }}</label>
                 {% if tab.type == "text" %}
-                <input type="text" class="form-control" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}" name="{{ tab.slug }}" id="{{tab.slug}}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="text" class="form-control" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}" name="{{ tab.slug }}[value]" id="{{tab.slug}}">
                 {% endif %}
 
 
                 {% if tab.type == "date" %}
-                <input type="date" class="form-control name="{{ tab.slug }}"">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="date" class="form-control" name="{{ tab.slug }}[value]">
                 {% endif %}
 
                 {% if tab.type == "email" %}
-                <input type="email" class="form-control" name="{{ tab.slug }}" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="email" class="form-control" name="{{ tab.slug }}[value]" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
                 {% endif %}
 
                 {% if tab.type == "password" %}
-                <input type="password" class="form-control" name="{{ tab.slug }}" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="password" class="form-control" name="{{ tab.slug }}[value]" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
                 {% endif %}
 
                 {% if tab.type == "textarea" %}
-                <textarea id="{{ tab.slug }}" class="form-control" name="{{ tab.slug }}" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}"></textarea>
-                <small id="emailHelp" class="form-text text-muted">{{ tab.help }}.</small>
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <textarea id="{{ tab.slug }}" class="form-control" name="{{ tab.slug }}[value]" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}"></textarea>
+                    <small id="emailHelp" class="form-text text-muted">{{ tab.help }}.</small>
                 {% endif %}
 
                 {% if tab.type == "file" %}
-                <input type="file" class="form-control" name="{{ tab.slug }}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="file" class="form-control" name="{{ tab.slug }}[value]">
                 {% endif %}
 
                 {% if tab.type == "number" %}
-                <input type="number" class="form-control" name="{{ tab.slug }}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="number" class="form-control" name="{{ tab.slug }}[value]">
                 {% endif %}
 
                 {% if tab.type == "color" %}
-                    <input type="color" class="form-control" style="width:100px" name="{{ tab.slug }}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="color" class="form-control" style="width:100px" name="{{ tab.slug }}[value]">
                 {% endif %}
 
 
                 {% if tab.type == "datetime-local" %}
-                <input type="datetime-local" class="form-control" name="{{ tab.slug }}">
+                <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                <input type="datetime-local" class="form-control" name="{{ tab.slug }}[value]">
                 {% endif %}
 
                 {% if tab.type == "radio" %}
                     {% for option in tab.options %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
                     <label for="{{ tab.slug }}">{{option.label}}</label>
-                    <input type="radio" class="form-checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}" value="{{option.value}}">
+                    <input type="radio" class="form-checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}[value]" value="{{option.value}}">
                     {% endfor %} 
                 {% endif %}
 
                 {% if tab.type == "multicheckbox" %}
                     {% for box in tab.options %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
                     <label for="{{ tab.slug }}">{{box.label}}</label>
-                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}" value="{{box.value}}">
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}[value][]" value="{{box.value}}">
                     {% endfor %} 
                 {% endif %}
 
                 {% if tab.type == "checkbox" %}
-
-                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}[value]">
                 {% endif %}
 
                  {% if tab.type == "select" %}
-                    <select name="{{ tab.slug }}" id="{{ tab.slug }}" class="form-control">
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <select name="{{ tab.slug }}[value]" id="{{ tab.slug }}" class="form-control">
                     <option>Choix</option>
                     {% for select in tab.options %}
                     <option value="{{ select.value }}">{{select.label}}</option>
@@ -117,7 +131,7 @@
 {% block javascripts %}
 <script>
     $(document).ready(function() {
-        $(document).on('click', 'input[name="pro"]', function() {
+        $(document).on('click', 'input[name="societe[value]"]', function() {
             var option = $(this).val();
             console.log(option);
             if (option === 'yes') {

@@ -1,0 +1,16 @@
+<style>
+.title {
+    color: red;
+}
+</style>
+<center><h1>DEVIS {{ sitename }}</h1></center>
+<div class="title">
+<div>Nom: {{devis['client']['nom']}}</div>
+<div>Prénom: {{devis['client']['prenom']}}</div>
+<div>Email: {{devis['client']['email']}} </div>
+<div>Siret: {{devis['client']['siret']['value']}}</div>
+<div>Dénomination ou raison social: {{devis['client']['denomination']['value']}}</div>
+
+</div>
+{{dump(devis)}}
+

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
 use App\Traits\FormText;
 use App\Form\NewSectionType;
 use Symfony\Component\Yaml\Yaml;
@@ -154,14 +155,67 @@ class DevisController extends AbstractController
             'paragraphes' => $paragraphes
         ]);
     }
-
+    # Sert à récupérer les informations personnelles
     /**
      * @Route("/devis/connexion", name="connexion")
      */
-#    public function connectionAction(Request $request) 
-#    {
-#        $nom = $request->request->get('nom');
-#        $prenom = $request->request->get('prenom');
-#        $email = $request->request->get('email');
-#    }
+    public function connectionAction(Request $request) 
+    {
+        $devis = [];
+        if($this->getUser()){
+            $devis['client'] = [
+                'nom' => $this->getUser()->getCompte()->getName(),
+                'prenom' => $this->getUser()->getCompte()->getFirstName(),
+                'email' =>  $this->getUser()->getEmail(),
+                'societe' => '',
+                'denomination' => '',
+                'siret' => '',
+            ];
+        }else{
+            $devis['client'] = [
+                'nom' => $request->request->get('nom'),
+                'prenom' => $request->request->get('prenom'),
+                'email' => $request->request->get('email'),
+                'societe' => $request->request->get('societe'),
+                'denomination' => $request->request->get('denomination'),
+                'siret' => $request->request->get('siret'),
+            ];
+
+            $request->request->remove('nom');
+            $request->request->remove('prenom');
+            $request->request->remove('email');
+            $request->request->remove('societe');
+            $request->request->remove('denomination');
+            $request->request->remove('siret');
+        }
+        
+        $devis['devis'] = [];
+        foreach ($request->request as $key => $value){
+            array_push($devis['devis'],$value);
+        }
+        /*
+        $template = $this->renderView('devis/layout/layout1.html.twig', [
+            'sitename' => 'plateformweb',
+
+        ]);*/
+        // instantiate and use the dompdf class
+        /*$dompdf = new Dompdf();
+        $dompdf->loadHtml($template);
+
+        // (Optional) Setup the paper size and orientationu
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream();*/
+
+        return $this->render('devis/layout/layout1.html.twig', [
+            'sitename' => 'plateformweb',
+            'devis' => $devis,
+        ]);
+    }
+    
+
 }
