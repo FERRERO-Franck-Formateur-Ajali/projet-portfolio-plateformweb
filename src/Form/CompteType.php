@@ -90,7 +90,7 @@ class CompteType extends AbstractType
                         'maxMessage' => 'Le champ ne peut pas dépasser 3 caractères.',
                     ]),
                     new Regex([
-                        'pattern' => '/^[0-9]+$/',
+                        'pattern' => '/^[-+]?[0-9]+$/',
                         'match' => true,
                         'message' => 'Champ invalide',
                     ]),

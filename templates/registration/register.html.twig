@@ -18,4 +18,20 @@
        
     {{ form_end(registrationForm) }}
 
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $(document).on('click', 'input[name="registration_form[jeSuis]"]', function() {
+            var option = $(this).val();
+            console.log(option);
+            if (option === true) {
+                $('#registration_form_compte_siret').hide();
+            }else if(option === false) {
+                $('#registration_form_compte_siret').show();
+            }
+        });
+    });
+</script>
+{% endblock %}
+
 {% endblock %}
