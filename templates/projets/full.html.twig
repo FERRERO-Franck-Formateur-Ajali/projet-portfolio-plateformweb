@@ -3,12 +3,15 @@
 {% block title %}Projets Entier{% endblock %}
 
 {% block body %}
+<div class="p-5">
+    <h1>{{ projets.title }}</h1>
+    <div class="my-5"> 
+        <p>{{ projets.metades }}</p><hr>
+        <div class="my-5"> <img src="https://blog.vacancesweb.be/wp-content/uploads/2021/09/chan_copy1.jpg" alt="image-portfolio" class="img-thumbnail float-left"></div>
+        <p>{{ projets.content }}</p>
+        <a href="{{ projets.url }}" class="mr-3">Lien projets</a>
 
-<h1>{{ projets.title }}</h1>
-<p>{{ projets.metades }}</p><hr>
-<img src="{{ projets.image }}" alt="image-portfolio">
-<p>{{ projets.content }}</p>
-<a href="{{ projets.url }}">Lien projets</a>
-
-<a href="{{ projets.github }}">Lien Github du projets</a>
+        <a href="{{ projets.github }}">Lien Github du projets</a>
+    </div>
+</div>
 {% endblock %}

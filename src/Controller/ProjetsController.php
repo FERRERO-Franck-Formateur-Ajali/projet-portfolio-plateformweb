@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjetsController extends AbstractController
 {
     /**
-     * @Route("/projets", name="projets")
+     * @Route("/portfolio", name="porftfolio")
      */
     public function index(ProjetsRepository $projetsRepository): Response
     {
@@ -22,7 +22,7 @@ class ProjetsController extends AbstractController
     }
 
     /**
-     * @Route("/projets/{slug}", name="projets_full")
+     * @Route("/portfolio/{slug}", name="portfolio_full")
      */
     public function full(Projets $projets): Response
     {
