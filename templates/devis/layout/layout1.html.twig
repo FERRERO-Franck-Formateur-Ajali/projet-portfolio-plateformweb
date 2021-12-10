@@ -1,7 +1,32 @@
 <style>
 .title {
     color: red;
+    font-weight: bold;
 }
+.devis{
+    margin-top: 30px;
+}
+
+.wrapper {
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap:10px;
+    border-style:solid;
+}   
+
+.wrapper {
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap:10px;
+    border-style:solid;
+}
+table, th, td {
+    border: 1px solid black;   
+}
+.color{
+    color:red;
+}
+
 </style>
 <center><h1>DEVIS {{ sitename }}</h1></center>
 <div class="title">
@@ -10,7 +35,39 @@
 <div>Email: {{devis['client']['email']}} </div>
 <div>Siret: {{devis['client']['siret']['value']}}</div>
 <div>Dénomination ou raison social: {{devis['client']['denomination']['value']}}</div>
-
 </div>
-{{dump(devis)}}
 
+<div class="devis ">
+    <table style="width: 100%">
+    <center><h2>Devis</h2></center>
+        <tr>
+        </tr>
+        <tr>
+            {% for champs in devis['devis'] %}
+                <td>{{ champs.question}}</td>
+            {% if champs.value is iterable %}
+                <td>
+                {% for choix in champs.value %}
+                    {{ choix }}
+                {% endfor %}
+                </td>
+            {% else %}
+                <td>{{ champs.value }}</td>
+            {% endif %}
+        </tr>
+            {% endfor %}
+    </table>
+</div>
+
+{#<div class="devis">
+    {% for champs in devis['devis'] %}
+                {{ champs.question}}
+                {% if champs.value is iterable %}
+                    {% for choix in champs.value %}
+                        {{ choix }}
+                    {% endfor %}
+                {% else %}
+                    {{ champs.value }}
+                {% endif %}
+    {% endfor %}
+</div>#}
