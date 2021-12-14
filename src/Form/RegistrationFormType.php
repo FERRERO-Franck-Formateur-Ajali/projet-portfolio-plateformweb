@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -68,8 +70,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('newsletter')
-            ->add('compte', CompteType::class)
-            ;
+            ->add('compte', CompteType::class);
+
+        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+            $form = $event->getform();
+
+            $data = $event->getdata();
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

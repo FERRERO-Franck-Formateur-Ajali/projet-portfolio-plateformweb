@@ -18,16 +18,16 @@
        
     {{ form_end(registrationForm) }}
 
-{% block javascripts %}
+    {% block javascripts %}
 <script>
     $(document).ready(function() {
-        $(document).on('click', 'input[name="registration_form[jeSuis]"]', function() {
+        $(document).on('click', 'input[name="societe[value]"]', function() {
             var option = $(this).val();
             console.log(option);
-            if (option === true) {
-                $('#registration_form_compte_siret').hide();
-            }else if(option === false) {
-                $('#registration_form_compte_siret').show();
+            if (option === 'yes') {
+                $('#pro').show();
+            }else if(option === 'no') {
+                $('#pro').hide();
             }
         });
     });
