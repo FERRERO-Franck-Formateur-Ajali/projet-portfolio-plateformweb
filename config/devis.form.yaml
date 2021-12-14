@@ -1,12 +1,12 @@
 hebergement:
     label: Hébergement
-    tabs: [{ label: 'Est-ce que votre site est déjà en ligne ?', type: radio, help: '', slug: est-ce-que-votre-site-est-deja-en-ligne, options: [{ label: Oui, value: oui }, { label: Non, value: non }] }, { label: 'Si oui, quel est le nom de votre hébergeur ?', type: text, help: '', slug: si-oui--quel-est-le-nom-de-votre-hebergeur, placeholder: 'Nom de votre site' }, { label: 'La couleur principale du site', type: color, help: '', slug: la-couleur-principale-du-site }]
+    tabs: [{ label: 'Est-ce que votre site est déjà en ligne ?', type: radio, help: '', slug: est-ce-que-votre-site-est-deja-en-ligne, options: [{ label: Oui, value: Oui }, { label: Non, value: Non }] }, { label: 'Si oui, quel est le nom de votre hébergeur ?', type: text, help: '', slug: si-oui--quel-est-le-nom-de-votre-hebergeur, placeholder: 'Nom de votre site' }, { label: 'La couleur principale du site', type: color, help: '', slug: la-couleur-principale-du-site }]
 template:
     label: Template
-    tabs: [{ label: 'Templates disponibles : ', type: select, help: '', slug: templates-disponibles, options: [{ label: Black, value: B }, { label: Green, value: G }, { label: Rouge, value: R }, { label: Yellow, value: 'Y' }] }, { label: 'Voulez-vous un site responsive ?', type: checkbox, help: '', slug: voulez-vous-un-site-responsive }]
+    tabs: [{ label: 'Templates disponibles : ', type: select, help: '', slug: templates-disponibles, options: [{ label: Noir, value: Noir }, { label: Vert, value: Vert }, { label: Rouge, value: Rouge }, { label: Jaune, value: 'Jaune' }] }, { label: 'Voulez-vous un site responsive ?', type: checkbox, help: '', slug: voulez-vous-un-site-responsive }]
 paneladmin:
     label: 'Panel Admin'
-    tabs: [{ label: 'Désirez-vous un panel admin ?', type: radio, help: '', slug: desirez-vous-un-panel-admin, options: [{ label: Oui, value: o }, { label: Non, value: 'n' }] }, { label: 'Comment vous appelez-vous ?', type: text, help: '', slug: comment-vous-appelez-vous, placeholder: 'Nom, Prénom' }]
+    tabs: [{ label: 'Désirez-vous un panel admin ?', type: radio, help: '', slug: desirez-vous-un-panel-admin, options: [{ label: Oui, value: Oui }, { label: Non, value: 'Non' }] }, { label: 'Comment vous appelez-vous ?', type: text, help: '', slug: comment-vous-appelez-vous, placeholder: 'Nom, Prénom' }]
 formgroupe:
     label: 'Form groupe'
-    tabs: [{ label: 'Quel sont vos fruits préférés ?', type: multicheckbox, help: '', slug: quel-sont-vos-fruits-preferes, placeholder: '', options: [{ label: Banane, value: B }, { label: Tomate, value: T }, { label: Orange, value: O }, { label: Kiwi, value: K }, { label: Pastèque, value: P }] }]
+    tabs: [{ label: 'Quel sont vos fruits préférés ?', type: multicheckbox, help: '', slug: quel-sont-vos-fruits-preferes, placeholder: '', options: [{ label: Banane, value: Banane }, { label: Tomate, value: Tomate }, { label: Orange, value: Orange }, { label: Kiwi, value: Kiwi }, { label: Pastèque, value: Pastèque }] }]

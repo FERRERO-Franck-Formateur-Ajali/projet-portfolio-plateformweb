@@ -11,23 +11,23 @@
         <div>Êtes-vous une société ?</div>
         <input type="hidden" name="societe[question]" value="Êtes-vous une société ?">
         <label>Oui</label>
-        <input type="radio" name="societe[value]" value="yes">
+        <input type="radio" name="societe[value]" value="yes" class="form-checkbox">
         <label>Non</label>
-        <input type="radio" name="societe[value]" value="no">
+        <input type="radio" name="societe[value]" value="no" class="form-checkbox">
         <div id="pro" style="display:none;">
             <label>Siret</label>
-            <input type="hidden" name="siret[question]" value="Siret">
-            <input type="text" name="siret[value]">
+            <input type="hidden" name="siret[question]" value="Siret" >
+            <input type="text" name="siret[value]" class="form-control">
             <label>Dénomination ou raison social</label>
             <input type="hidden" name="denomination[question]" value="Dénomination ou raison social">
-            <input type="text" name="denomination[value]">
+            <input type="text" name="denomination[value]" class="form-control">
         </div></br>
         <label>Nom</label>
-        <input type="text" class="form-group" name="nom">
+        <input type="text" class="form-control" placeholder="Entrez ici" name="nom">
         <label>Prénom</label>
-        <input type="text" class="form-group" name="prenom">
+        <input type="text" class="form-control" placeholder="Entrez ici" name="prenom">
         <label>Email</label>
-        <input type="email" class="form-group" name="email">
+        <input type="email" class="form-control" placeholder="Entrez ici" name="email">
         {% endif %}
         {% for section in form %}
         <div class="mb-5">

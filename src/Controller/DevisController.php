@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Traits\FormText;
 use App\Form\NewSectionType;
 use Symfony\Component\Yaml\Yaml;
@@ -15,13 +16,13 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class DevisController extends AbstractController
 {
     use FormText;
-    
+
     private $file;
     private $tableau;
 
     public function __construct(ParameterBagInterface $params)
     {
-        $this->file = $params->get('app_root').'/config/devis.form.yaml';
+        $this->file = $params->get('app_root') . '/config/devis.form.yaml';
         $this->tableau = Yaml::parseFile($this->file); // yaml::dump
     }
 
@@ -46,9 +47,9 @@ class DevisController extends AbstractController
         $paragraphes = [];
         foreach ($this->tableau as $paragraphe => $parametres) {
             $paragraphes[$paragraphe] = $parametres['label'];
-        } 
-    
-    
+        }
+
+
         return $this->render('devis/section.html.twig', [
             'controller_name' => 'DevisController',
             'form' => $this->tableau,
@@ -75,10 +76,10 @@ class DevisController extends AbstractController
                 'label' => $section,
                 'tabs' => [],
             ];
-    
+
             file_put_contents($this->file, Yaml::dump($this->tableau));
             exec('rm -R var/cache');
-    
+
             return $this->redirectToRoute('admin_section');
         }
         return $this->render('devis/new.section.html.twig', [
@@ -108,14 +109,14 @@ class DevisController extends AbstractController
             $slug = $this->slug($question);
             $placeholder = $request->request->get('placeholder');
             $options = [];
-            if($input === 'radio' || $input === 'select' || $input === 'multicheckbox'){
+            if ($input === 'radio' || $input === 'select' || $input === 'multicheckbox') {
                 $labels = $request->request->get('label');
                 $values = $request->request->get('value');
-                
-                for($i = 0; $i < count($labels); $i++) {
-                    $options[]=[
-                    'label' => $labels[$i],
-                    'value' => $values[$i],
+
+                for ($i = 0; $i < count($labels); $i++) {
+                    $options[] = [
+                        'label' => $labels[$i],
+                        'value' => $values[$i],
                     ];
                 }
             }
@@ -126,24 +127,22 @@ class DevisController extends AbstractController
                 'slug' => $slug,
                 'placeholder' => $placeholder,
             ];
-            if(!empty($options)){
+            if (!empty($options)) {
                 $tabs['options'] = $options;
             }
 
             $this->tableau[$section]['tabs'][] = $tabs;
 
-            
+
 
             file_put_contents($this->file, Yaml::dump($this->tableau));
             exec('rm -R var/cache');
-            
-            
         }
 
         $paragraphes = [];
         foreach ($this->tableau as $paragraphe => $parametres) {
             $paragraphes[$paragraphe] = $parametres['label'];
-        } 
+        }
 
         $inputs = ['text', 'select', 'radio', 'textarea', 'datetime-local', 'file', 'number', 'color', 'password', 'email', 'checkbox', 'multicheckbox'];
 
@@ -159,10 +158,10 @@ class DevisController extends AbstractController
     /**
      * @Route("/devis/connexion", name="connexion")
      */
-    public function connectionAction(Request $request) 
+    public function connectionAction(Request $request)
     {
         $devis = [];
-        if($this->getUser()){
+        if ($this->getUser()) {
             $devis['client'] = [
                 'nom' => $this->getUser()->getCompte()->getName(),
                 'prenom' => $this->getUser()->getCompte()->getFirstName(),
@@ -171,7 +170,7 @@ class DevisController extends AbstractController
                 'denomination' => '',
                 'siret' => '',
             ];
-        }else{
+        } else {
             $devis['client'] = [
                 'nom' => $request->request->get('nom'),
                 'prenom' => $request->request->get('prenom'),
@@ -188,34 +187,47 @@ class DevisController extends AbstractController
             $request->request->remove('denomination');
             $request->request->remove('siret');
         }
-        
+
         $devis['devis'] = [];
-        foreach ($request->request as $key => $value){
-            array_push($devis['devis'],$value);
+        foreach ($request->request as $key => $value) {
+            array_push($devis['devis'], $value);
         }
-        /*
+
+
+        // instantiate and use the dompdf class
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
         $template = $this->renderView('devis/layout/layout1.html.twig', [
             'sitename' => 'plateformweb',
+            'devis' => $devis,
 
-        ]);*/
-        // instantiate and use the dompdf class
-        /*$dompdf = new Dompdf();
+        ]);
+
         $dompdf->loadHtml($template);
 
-        // (Optional) Setup the paper size and orientationu
-        $dompdf->setPaper('A4', 'landscape');
+        // (Optional) landscape ou portrait Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
 
         // Render the HTML as PDF
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream();*/
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
 
+        return new Response('', '200', [
+            'Content-Type' => 'application/pdf'
+        ]);
+
+        /*
         return $this->render('devis/layout/layout1.html.twig', [
             'sitename' => 'plateformweb',
             'devis' => $devis,
         ]);
+        */
     }
-    
-
 }
