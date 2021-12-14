@@ -123,9 +123,7 @@ class CompteType extends AbstractType
                 'choice_label' => 'civilite',
                 'choice_value' => 'id',
                 'label' => 'Civilité',
-            ])
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -71,12 +71,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('newsletter')
             ->add('compte', CompteType::class);
-
-        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
-            $form = $event->getform();
-
-            $data = $event->getdata();
-        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

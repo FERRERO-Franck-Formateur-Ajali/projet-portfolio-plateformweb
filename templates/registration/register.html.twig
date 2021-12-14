@@ -21,13 +21,27 @@
     {% block javascripts %}
 <script>
     $(document).ready(function() {
-        $(document).on('click', 'input[name="societe[value]"]', function() {
+        $(document).on('click', 'input[name="registration_form[jeSuis]"]', function() {
             var option = $(this).val();
             console.log(option);
-            if (option === 'yes') {
-                $('#pro').show();
-            }else if(option === 'no') {
-                $('#pro').hide();
+            if (option === "1") {
+                $('#registration_form_compte_raisonsocial').hide();
+                $('label[for="registration_form_compte_raisonsocial"]').hide();
+
+                $('#registration_form_compte_siret').hide();
+                $('label[for="registration_form_compte_siret"]').hide();
+
+                $('#registration_form_compte_fonction').hide();
+                $('label[for="registration_form_compte_fonction"]').hide();
+            }else if(option === "0") {
+                 $('label[for="registration_form_compte_raisonsocial"]').show();
+                 $('#registration_form_compte_raisonsocial').show();
+
+                 $('label[for="registration_form_compte_siret"]').show();
+                 $('#registration_form_compte_siret').show();
+                 
+                 $('label[for="registration_form_compte_fonction"]').show();
+                 $('#registration_form_compte_fonction').show();
             }
         });
     });

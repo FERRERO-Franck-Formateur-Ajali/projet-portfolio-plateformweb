@@ -19,4 +19,7 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
+src/Controller/TestController.php
+/templates/test/
+
 
