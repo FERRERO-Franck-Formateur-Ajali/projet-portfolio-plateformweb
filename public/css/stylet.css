@@ -1,0 +1,21 @@
+.navigation.nav-bg{
+    background-color: #0a4e5c;
+}
+
+.form-group{
+    margin-bottom: 2rem;
+}
+
+.body{
+    line-height: 1.2;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.test{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: #ffffff;
+}

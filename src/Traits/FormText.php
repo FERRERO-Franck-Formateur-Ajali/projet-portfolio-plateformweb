@@ -70,13 +70,13 @@ trait FormText
      *
      * @return string
      */
-    public function slug(string $text): string
+    public function slug(string $text, array $search = [' ', '_', ',', '.'], array $replace = ['-', '-', '-', '-']): string
     {
         $text = strtolower(
             $this->removeSpecialChar(
                 str_replace(
-                    array(' ', '_', ',', '.'),
-                    array('-', '-', '-', '-'),
+                    $search,
+                    $replace,
                     $this->enleveAccents($text)
                 )
             )

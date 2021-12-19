@@ -1,0 +1,145 @@
+<style>
+.container{
+    width: 100%;
+}
+
+.title {
+    border: 15px groove black; 
+    margin-top:15px;
+}
+.devis{
+    background-color: grey;
+    margin-top: 40px;
+}
+
+table{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    margin-top:70px;
+    
+}
+table, th, td {
+    border: 3px groove black; 
+    background-color: white;  
+}
+th{
+    background-color: grey;
+    color: white;
+}
+
+.image {
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    padding:10px;
+    border: 20px ridge black;
+    position:relative;
+
+}
+
+.margin {
+    margin-top:100px;
+}
+
+img {
+ height: 100%;
+ width: 100%;
+ object-fit: contain;
+}
+
+.logo {
+ height:100px;
+ width: 100px;
+ position:relative;
+}
+
+.bg-title h1 {
+    padding: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+.bg-title img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: gold;
+    border: 15px ridge black;
+    border-radius: 100%;
+    display: inline-block;
+}
+
+.dot2 {
+    padding-left:350px;
+    height: 20px;
+    width: 20px;
+    margin:left 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+</style>
+    <div class="container">
+    <div class="image">
+    <div class="logo">
+        <img src="{{ base64(absolute_url('/images/backgrounds/test.png')) }}" alt="Example"/>
+    </div>
+    <div class="title">
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot2"></span>
+        <span class="dot"></span>
+
+        <center><h1>DEVIS {{ sitename }}</h1></center>
+          <span class="dot"></span>
+          <span class="dot2"></span>
+          <span class="dot"></span>
+          </div>
+    </div>
+    <table><tr><td>
+        <div>Nom: {{devis['client']['nom']}}</div>
+        <div>Prénom: {{devis['client']['prenom']}}</div>
+        <div>Email: {{devis['client']['email']}} </div>
+        <div>Siret: {{devis['client']['siret']['value']}}</div>
+        <div>Dénomination ou raison social: {{devis['client']['denomination']['value']}}</div>
+    </div>
+    </td>
+    <td>
+    <div>Dénomination ou raison social: Plateformweb</div>
+    <div>Email: Lolilolilol@gmail.com</div>
+    <div>Siret: 134-2395923</div>
+    </td>
+    </tr>
+    </table>
+
+    <div class="devis">
+        <table>
+            <tr>
+                <th colspan="2">Devis</th>
+            </tr>
+                {% for champs in devis['devis'] %}
+                   <tr> <td>{{ champs.question}}</td> 
+                {% if champs.value is iterable %}
+                    <td>
+                    {% for choix in champs.value %}
+                        {{ choix }}
+                    {% endfor %}
+                    </td>
+                {% else %}
+                    <td>{{ champs.value }}</td>
+                {% endif %}
+            </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+</div>

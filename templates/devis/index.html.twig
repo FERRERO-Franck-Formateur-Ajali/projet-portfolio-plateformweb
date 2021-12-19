@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis{% endblock %}
+{#{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/stylet.css') }}">{% endblock %}#}
+{% block body %}
+{#{{dump(form)}}#}
+<div class="p-5">
+    <form action="{{ path('connexion') }}" method="post">
+        <h1 class="mb-5">Devis</h1>
+        {% if is_granted('ROLE_USER') == false %}
+        <div>Êtes-vous une société ?</div>
+        <input type="hidden" name="societe[question]" value="Êtes-vous une société ?">
+        <label>Oui</label>
+        <input type="radio" name="societe[value]" value="yes" class="form-checkbox">
+        <label>Non</label>
+        <input type="radio" name="societe[value]" value="no" class="form-checkbox">
+        <div id="pro" style="display:none;">
+            <label>Siret</label>
+            <input type="hidden" name="siret[question]" value="Siret" >
+            <input type="text" name="siret[value]" class="form-control">
+            <label>Dénomination ou raison social</label>
+            <input type="hidden" name="denomination[question]" value="Dénomination ou raison social">
+            <input type="text" name="denomination[value]" class="form-control">
+        </div></br>
+        <label>Nom</label>
+        <input type="text" class="form-control" placeholder="Entrez ici" name="nom">
+        <label>Prénom</label>
+        <input type="text" class="form-control" placeholder="Entrez ici" name="prenom">
+        <label>Email</label>
+        <input type="email" class="form-control" placeholder="Entrez ici" name="email">
+        {% endif %}
+        {% for section in form %}
+        <div class="mb-5">
+            <h5><div>{{section.label}}</div></h5>
+    
+
+
+            {% for tab in section.tabs %}
+            <div class="form-group">
+                <label for="{{tab.slug}}">{{ tab.label }}</label>
+                {% if tab.type == "text" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="text" class="form-control" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}" name="{{ tab.slug }}[value]" id="{{tab.slug}}">
+                {% endif %}
+
+
+                {% if tab.type == "date" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="date" class="form-control" name="{{ tab.slug }}[value]">
+                {% endif %}
+
+                {% if tab.type == "email" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="email" class="form-control" name="{{ tab.slug }}[value]" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
+                {% endif %}
+
+                {% if tab.type == "password" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="password" class="form-control" name="{{ tab.slug }}[value]" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}">
+                {% endif %}
+
+                {% if tab.type == "textarea" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <textarea id="{{ tab.slug }}" class="form-control" name="{{ tab.slug }}[value]" placeholder="{{ tab.placeholder is defined ? tab.placeholder : ''}}"></textarea>
+                    <small id="emailHelp" class="form-text text-muted">{{ tab.help }}.</small>
+                {% endif %}
+
+                {% if tab.type == "file" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="file" class="form-control" name="{{ tab.slug }}[value]">
+                {% endif %}
+
+                {% if tab.type == "number" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="number" class="form-control" name="{{ tab.slug }}[value]">
+                {% endif %}
+
+                {% if tab.type == "color" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="color" class="form-control" style="width:100px" name="{{ tab.slug }}[value]">
+                {% endif %}
+
+
+                {% if tab.type == "datetime-local" %}
+                <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                <input type="datetime-local" class="form-control" name="{{ tab.slug }}[value]">
+                {% endif %}
+
+                {% if tab.type == "radio" %}
+                    {% for option in tab.options %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <label for="{{ tab.slug }}">{{option.label}}</label>
+                    <input type="radio" class="form-checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}[value]" value="{{option.value}}">
+                    {% endfor %} 
+                {% endif %}
+
+                {% if tab.type == "multicheckbox" %}
+                    {% for box in tab.options %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <label for="{{ tab.slug }}">{{box.label}}</label>
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}[value][]" value="{{box.value}}">
+                    {% endfor %} 
+                {% endif %}
+
+                {% if tab.type == "checkbox" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <input type="checkbox" id="{{ tab.slug }}" name="{{ tab.slug }}[value]">
+                {% endif %}
+
+                 {% if tab.type == "select" %}
+                    <input type="hidden" name="{{ tab.slug }}[question]" value="{{ tab.label }}">
+                    <select name="{{ tab.slug }}[value]" id="{{ tab.slug }}" class="form-control">
+                    <option>Choix</option>
+                    {% for select in tab.options %}
+                    <option value="{{ select.value }}">{{select.label}}</option>
+                    {% endfor %}
+                    </select>
+                {% endif %}
+                </div>
+
+            {% endfor %}    
+
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-secondary">Envoyer</button>
+    </form>
+</div>
+{% endblock %}
+
+{# Si la société existe, alors, afficher le siret #}
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $(document).on('click', 'input[name="societe[value]"]', function() {
+            var option = $(this).val();
+            console.log(option);
+            if (option === 'yes') {
+                $('#pro').show();
+            }else if(option === 'no') {
+                $('#pro').hide();
+            }
+        });
+    });
+</script>
+{% endblock %}

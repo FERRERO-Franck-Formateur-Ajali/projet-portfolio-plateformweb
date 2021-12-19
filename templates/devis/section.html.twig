@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutu{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<select name="paragraphe" id="paragraphe-select" onchange="window.location.href=this.value" class="form-control">
+<option>Choisir un paragraphe</option>
+{% for section, label in paragraphes %}
+<option value="{{ path('admin_name_section', {'section':section}) }}">{{ label }}</option>
+{% endfor %}
+</select> 
+
+
+
+{% endblock %}

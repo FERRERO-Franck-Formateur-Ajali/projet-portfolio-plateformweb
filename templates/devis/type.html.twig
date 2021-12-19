@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis new section{% endblock %}
+
+{% block body %}
+<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-14 text-center">
+        <h1 class="text-white font-tertiary">>New section</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container my-5">
+<select name="input" onchange="window.location.href=this.value">
+    <option>Choix</option>
+    {% for input in inputs %}
+    <option value="{{ path('admin_input_section', {'name':name, 'input':input}) }}">{{ input }}</option>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mt-5">Ajouter la section</button>
+    </form>
+</div>
+{% endblock %}
